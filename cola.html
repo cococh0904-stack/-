@@ -1,149 +1,307 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
+
 <head>
 <meta charset="UTF-8">
-<title>My Resume</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>個人履歷</title>
 
 <style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:"Microsoft JhengHei",sans-serif;
+}
+
 body{
-    font-family: Arial, "Microsoft JhengHei";
-    margin:0;
-    background:#f5f5f5;
+background:#f4f6fb;
+color:#333;
 }
 
 header{
-    background:#4A6FA5;
-    color:white;
-    text-align:center;
-    padding:40px;
+background:linear-gradient(135deg,#4facfe,#00f2fe);
+color:white;
+text-align:center;
+padding:60px 20px;
+}
+
+header img{
+width:140px;
+height:140px;
+border-radius:50%;
+border:5px solid white;
+margin-bottom:15px;
+object-fit:cover;
+}
+
+header h1{
+font-size:36px;
+}
+
+header p{
+font-size:18px;
 }
 
 .container{
-    width:80%;
-    margin:auto;
+width:85%;
+max-width:1000px;
+margin:auto;
+margin-top:30px;
 }
 
-section{
-    background:white;
-    margin-top:20px;
-    padding:20px;
-    border-radius:10px;
-    box-shadow:0 0 10px rgba(0,0,0,0.1);
+.card{
+background:white;
+padding:25px;
+margin-bottom:25px;
+border-radius:12px;
+box-shadow:0 6px 15px rgba(0,0,0,0.1);
+opacity:0;
+transform:translateY(40px);
+transition:0.6s;
+}
+
+.card.show{
+opacity:1;
+transform:translateY(0);
 }
 
 h2{
-    border-bottom:2px solid #ddd;
-    padding-bottom:5px;
+border-left:5px solid #4facfe;
+padding-left:10px;
+margin-bottom:15px;
+}
+
+.skills{
+margin-top:10px;
 }
 
 .skill{
-    background:#4A6FA5;
-    color:white;
-    padding:5px 10px;
-    margin:5px;
-    display:inline-block;
-    border-radius:5px;
+margin-bottom:15px;
 }
 
-button{
-    padding:10px 15px;
-    border:none;
-    background:#4A6FA5;
-    color:white;
-    border-radius:5px;
-    cursor:pointer;
+.skill-name{
+margin-bottom:5px;
 }
 
-button:hover{
-    background:#3a5a87;
+.progress{
+background:#ddd;
+height:10px;
+border-radius:10px;
+overflow:hidden;
+}
+
+.progress-bar{
+height:10px;
+background:#4facfe;
+width:0;
+transition:1s;
+}
+
+.contact{
+line-height:1.8;
 }
 
 footer{
-    text-align:center;
-    padding:20px;
-    color:#666;
+text-align:center;
+padding:20px;
+color:#777;
 }
-</style>
 
+button{
+margin-top:10px;
+padding:10px 18px;
+border:none;
+background:#4facfe;
+color:white;
+border-radius:8px;
+cursor:pointer;
+}
+
+button:hover{
+background:#3398ff;
+}
+
+/* 響應式手機 */
+
+@media(max-width:768px){
+
+header h1{
+font-size:28px;
+}
+
+.container{
+width:92%;
+}
+
+}
+
+</style>
 </head>
+
 
 <body>
 
 <header>
-    <h1 id="name">亞洲大學學生</h1>
-    <p>學號：AU114001001</p>
-    <p id="time"></p>
+
+<img src="https://i.imgur.com/4Z7K9wH.png">
+
+<h1>亞洲大學學生</h1>
+
+<p>人工智慧學系</p>
+
+<p>學號：114022064</p>
+
 </header>
+
 
 <div class="container">
 
-<section>
+<div class="card">
+
 <h2>自我介紹</h2>
+
 <p>
-我是亞洲大學的學生，目前就讀大學一年級。  
-對資訊科技、人工智慧與商業應用等領域有濃厚興趣，  
-希望未來能在科技與商務結合的領域發展。
+我是亞洲大學人工智慧學系的學生，目前對人工智慧、
+程式設計與科技應用領域有高度興趣。
+希望未來能在 AI 技術與商業應用領域持續學習與發展。
 </p>
-</section>
-
-<section>
-<h2>學歷</h2>
-<ul>
-<li>亞洲大學 Asia University</li>
-<li>系所：資訊相關領域（可自行修改）</li>
-<li>學號：114022064</li>
-</ul>
-</section>
-
-<section>
-<h2>技能</h2>
-
-<span class="skill">Python</span>
-<span class="skill">HTML</span>
-<span class="skill">JavaScript</span>
-<span class="skill">AI 基礎</span>
-<span class="skill">資料分析</span>
-
-</section>
-
-<section>
-<h2>作品 / 專案</h2>
-<ul>
-<li>AI 課程短影音專案</li>
-<li>Python 程式設計作業</li>
-<li>設計思考與創新專題</li>
-</ul>
-</section>
-
-<section>
-<h2>聯絡方式</h2>
-
-<p>Email：example@email.com</p>
-<p>GitHub：<a href="#">https://github.com/yourname</a></p>
-
-<button onclick="showMessage()">聯絡我</button>
-
-</section>
 
 </div>
 
+
+<div class="card">
+
+<h2>技能</h2>
+
+<div class="skills">
+
+<div class="skill">
+<div class="skill-name">Python</div>
+<div class="progress">
+<div class="progress-bar" data-skill="85"></div>
+</div>
+</div>
+
+<div class="skill">
+<div class="skill-name">HTML / CSS</div>
+<div class="progress">
+<div class="progress-bar" data-skill="75"></div>
+</div>
+</div>
+
+<div class="skill">
+<div class="skill-name">JavaScript</div>
+<div class="progress">
+<div class="progress-bar" data-skill="65"></div>
+</div>
+</div>
+
+<div class="skill">
+<div class="skill-name">人工智慧基礎</div>
+<div class="progress">
+<div class="progress-bar" data-skill="70"></div>
+</div>
+</div>
+
+</div>
+
+</div>
+
+
+<div class="card">
+
+<h2>專案 / 作業</h2>
+
+<ul>
+
+<li>AI 課程短影音介紹專案</li>
+
+<li>Python 程式設計練習</li>
+
+<li>設計思考與創新課程專題</li>
+
+<li>智慧商務導論學習報告</li>
+
+</ul>
+
+</div>
+
+
+<div class="card">
+
+<h2>聯絡資訊</h2>
+
+<div class="contact">
+
+Email：cococh0904@gmail.com
+
+<br>
+
+學校：亞洲大學
+
+</div>
+
+<button onclick="contact()">聯絡我</button>
+
+</div>
+
+</div>
+
+
 <footer>
-© 2026 個人履歷
+
+© 2026 Personal Resume
+
 </footer>
+
 
 <script>
 
-function showMessage(){
-    alert("歡迎與我聯絡！");
+/* 滑動動畫 */
+
+const cards=document.querySelectorAll(".card");
+
+window.addEventListener("scroll",function(){
+
+cards.forEach(card=>{
+
+let top=card.getBoundingClientRect().top;
+
+if(top<window.innerHeight-50){
+
+card.classList.add("show");
+
 }
 
-function updateTime(){
-    const now = new Date();
-    document.getElementById("time").innerText =
-    "現在時間：" + now.toLocaleString();
-}
+});
 
-setInterval(updateTime,1000);
+});
+
+
+/* 技能條動畫 */
+
+window.addEventListener("load",function(){
+
+let bars=document.querySelectorAll(".progress-bar");
+
+bars.forEach(bar=>{
+
+let value=bar.getAttribute("data-skill");
+
+bar.style.width=value+"%";
+
+});
+
+});
+
+
+function contact(){
+
+alert("歡迎透過 Email 與我聯絡！");
+
+}
 
 </script>
 
