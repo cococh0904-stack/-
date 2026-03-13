@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>My Resume</title>
+
+<style>
+body{
+    font-family: Arial, "Microsoft JhengHei";
+    margin:0;
+    background:#f5f5f5;
+}
+
+header{
+    background:#4A6FA5;
+    color:white;
+    text-align:center;
+    padding:40px;
+}
+
+.container{
+    width:80%;
+    margin:auto;
+}
+
+section{
+    background:white;
+    margin-top:20px;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 0 10px rgba(0,0,0,0.1);
+}
+
+h2{
+    border-bottom:2px solid #ddd;
+    padding-bottom:5px;
+}
+
+.skill{
+    background:#4A6FA5;
+    color:white;
+    padding:5px 10px;
+    margin:5px;
+    display:inline-block;
+    border-radius:5px;
+}
+
+button{
+    padding:10px 15px;
+    border:none;
+    background:#4A6FA5;
+    color:white;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#3a5a87;
+}
+
+footer{
+    text-align:center;
+    padding:20px;
+    color:#666;
+}
+</style>
+
+</head>
+
+<body>
+
+<header>
+    <h1 id="name">亞洲大學學生</h1>
+    <p>學號：AU114001001</p>
+    <p id="time"></p>
+</header>
+
+<div class="container">
+
+<section>
+<h2>自我介紹</h2>
+<p>
+我是亞洲大學的學生，目前就讀大學一年級。  
+對資訊科技、人工智慧與商業應用等領域有濃厚興趣，  
+希望未來能在科技與商務結合的領域發展。
+</p>
+</section>
+
+<section>
+<h2>學歷</h2>
+<ul>
+<li>亞洲大學 Asia University</li>
+<li>系所：資訊相關領域（可自行修改）</li>
+<li>學號：AU114001001</li>
+</ul>
+</section>
+
+<section>
+<h2>技能</h2>
+
+<span class="skill">Python</span>
+<span class="skill">HTML</span>
+<span class="skill">JavaScript</span>
+<span class="skill">AI 基礎</span>
+<span class="skill">資料分析</span>
+
+</section>
+
+<section>
+<h2>作品 / 專案</h2>
+<ul>
+<li>AI 課程短影音專案</li>
+<li>Python 程式設計作業</li>
+<li>設計思考與創新專題</li>
+</ul>
+</section>
+
+<section>
+<h2>聯絡方式</h2>
+
+<p>Email：example@email.com</p>
+<p>GitHub：<a href="#">https://github.com/yourname</a></p>
+
+<button onclick="showMessage()">聯絡我</button>
+
+</section>
+
+</div>
+
+<footer>
+© 2026 個人履歷
+</footer>
+
+<script>
+
+function showMessage(){
+    alert("歡迎與我聯絡！");
+}
+
+function updateTime(){
+    const now = new Date();
+    document.getElementById("time").innerText =
+    "現在時間：" + now.toLocaleString();
+}
+
+setInterval(updateTime,1000);
+
+</script>
+
+</body>
+</html>
