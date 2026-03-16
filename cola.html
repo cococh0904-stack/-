@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>個人履歷</title>
+<title>曾可樂｜個人履歷</title>
 
 <style>
 
@@ -18,6 +18,7 @@ font-family:"Microsoft JhengHei",sans-serif;
 body{
 background:#f4f6fb;
 color:#333;
+transition:0.3s;
 }
 
 header{
@@ -57,14 +58,6 @@ padding:25px;
 margin-bottom:25px;
 border-radius:12px;
 box-shadow:0 6px 15px rgba(0,0,0,0.1);
-opacity:0;
-transform:translateY(40px);
-transition:0.6s;
-}
-
-.card.show{
-opacity:1;
-transform:translateY(0);
 }
 
 h2{
@@ -123,7 +116,45 @@ button:hover{
 background:#3398ff;
 }
 
-/* 響應式手機 */
+/* 深色模式 */
+
+.dark{
+background:#1e1e1e;
+color:#eee;
+}
+
+.dark .card{
+background:#2c2c2c;
+box-shadow:none;
+}
+
+.dark .progress{
+background:#555;
+}
+
+.dark footer{
+color:#aaa;
+}
+
+/* 深色模式按鈕 */
+
+.dark-btn{
+position:fixed;
+top:20px;
+right:20px;
+padding:10px 15px;
+border:none;
+border-radius:20px;
+background:#333;
+color:white;
+cursor:pointer;
+}
+
+.dark-btn:hover{
+background:#555;
+}
+
+/* 響應式 */
 
 @media(max-width:768px){
 
@@ -143,9 +174,11 @@ width:92%;
 
 <body>
 
+<button class="dark-btn" onclick="toggleDark()">深色模式</button>
+
 <header>
 
-<img src="images/photo.jpg">
+<img src="images/photo.JPG">
 
 <h1>曾可樂</h1>
 <p>亞洲大學 人工智慧學系</p>
@@ -213,15 +246,10 @@ width:92%;
 <h2>專案 / 作業</h2>
 
 <ul>
-
 <li>AI 課程短影音介紹專案</li>
-
 <li>Python 程式設計練習</li>
-
 <li>設計思考與創新課程專題</li>
-
 <li>智慧商務導論學習報告</li>
-
 </ul>
 
 </div>
@@ -257,27 +285,6 @@ Email：cococh0904@gmail.com
 
 <script>
 
-/* 滑動動畫 */
-
-const cards=document.querySelectorAll(".card");
-
-window.addEventListener("scroll",function(){
-
-cards.forEach(card=>{
-
-let top=card.getBoundingClientRect().top;
-
-if(top<window.innerHeight-50){
-
-card.classList.add("show");
-
-}
-
-});
-
-});
-
-
 /* 技能條動畫 */
 
 window.addEventListener("load",function(){
@@ -294,6 +301,15 @@ bar.style.width=value+"%";
 
 });
 
+/* 深色模式 */
+
+function toggleDark(){
+
+document.body.classList.toggle("dark");
+
+}
+
+/* 聯絡按鈕 */
 
 function contact(){
 
