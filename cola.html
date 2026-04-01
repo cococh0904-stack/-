@@ -141,7 +141,7 @@ font-size:40px;
 <body>
 
 <!-- 背景音樂 -->
-<audio autoplay loop hidden>
+<audio id="bgm" autoplay loop>
 <source src="53272674_MotionElements_gentle-open-pages.wav" type="audio/wav">
 </audio>
 
@@ -277,6 +277,22 @@ let bars=document.querySelectorAll(".progress-bar");
 
 bars.forEach(bar=>{
 bar.style.width=bar.getAttribute("data-skill")+"%";
+});
+
+});
+
+/* 背景音樂播放 */
+
+document.addEventListener("DOMContentLoaded", function() {
+
+let audio = document.getElementById("bgm");
+
+audio.volume = 0.3;
+
+audio.play().catch(() => {
+document.addEventListener("click", () => {
+audio.play();
+});
 });
 
 });
