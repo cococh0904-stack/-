@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
-
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>曾可樂｜個人履歷</title>
 
 <style>
@@ -16,253 +16,278 @@ font-family:"Microsoft JhengHei",sans-serif;
 }
 
 body{
-background:#ccc;
+background:#e6e6e6;
+}
+
+/* 滿版容器 */
+
+.container{
+display:flex;
+min-height:100vh;
+}
+
+/* 左側欄 */
+
+.left{
+width:30%;
+background:#bfb6ac;
+padding:40px 30px;
 color:#333;
 }
 
-/* 主容器 */
-.container{
-width:210mm;
-min-height:297mm;
-margin:20px auto;
-background:white;
-padding:20mm;
-box-sizing:border-box;
-box-shadow:0 0 10px rgba(0,0,0,0.2);
-}
-
-/* 上方區塊 */
-.top{
-display:flex;
-justify-content:space-between;
-align-items:center;
+.photo{
+text-align:center;
 margin-bottom:30px;
 }
 
-.name{
-font-size:60px;
-font-weight:bold;
-color:#c62828;
-line-height:1;
-}
-
-.info{
-margin-top:10px;
-font-size:14px;
-}
-
-/* 照片 */
 .photo img{
-width:180px;
-height:180px;
+width:150px;
+height:150px;
+border-radius:50%;
 object-fit:cover;
 }
 
-/* 標題 */
-.section-title{
-color:#c62828;
-margin-top:20px;
+/* 左側標題 */
+
+.left h3{
+margin-top:30px;
 margin-bottom:10px;
+letter-spacing:2px;
+}
+
+.left ul{
+padding-left:20px;
+line-height:1.8;
+}
+
+/* 右側 */
+
+.right{
+width:70%;
+background:white;
+padding:60px;
+}
+
+/* 名字 */
+
+.name{
+font-size:48px;
 font-weight:bold;
+color:#7a5b43;
 }
 
-/* 左右排版 */
-.row{
-display:flex;
-gap:30px;
+.job{
+color:#7a5b43;
+margin-bottom:30px;
 }
 
-.col{
-flex:1;
+/* 區塊 */
+
+.section{
+margin-bottom:30px;
+}
+
+.section h2{
+color:#7a5b43;
+border-bottom:2px solid #cbbba7;
+padding-bottom:5px;
+margin-bottom:15px;
 }
 
 /* 技能條 */
+
+.skill{
+margin-bottom:15px;
+}
+
 .progress{
 background:#ddd;
-height:10px;
+height:8px;
 border-radius:10px;
 overflow:hidden;
-margin-bottom:10px;
 }
 
 .progress-bar{
-height:10px;
-background:#c62828;
+height:8px;
+background:#7a5b43;
 width:0;
 transition:1s;
 }
 
-/* 清單 */
-ul{
-padding-left:18px;
-}
+/* 聯絡 */
 
-/* 按鈕 */
-button{
-margin-top:10px;
-padding:10px 18px;
-border:none;
-background:#c62828;
-color:white;
-border-radius:8px;
-cursor:pointer;
-}
-
-button:hover{
-background:#9a1b1b;
+.contact{
+line-height:1.8;
 }
 
 /* 響應式 */
-@media(max-width:768px){
 
-.top{
+@media(max-width:900px){
+
+.container{
 flex-direction:column;
-text-align:center;
 }
 
-.photo img{
-margin-top:20px;
+.left{
+width:100%;
 }
 
-.row{
-flex-direction:column;
+.right{
+width:100%;
+padding:30px;
 }
 
 .name{
-font-size:40px;
+font-size:32px;
 }
 
 }
 
 </style>
+
 </head>
 
 
 <body>
 
 <!-- 背景音樂 -->
+
 <audio id="bgm" autoplay loop>
-<source src="53272674_MotionElements_gentle-open-pages.wav" type="audio/wav">
+<source src="53272674_MotionElements_gentle-open-pages.wav">
 </audio>
+
 
 <div class="container">
 
-<div class="top">
+<!-- 左側 -->
 
-<div>
-<div class="name">曾可樂</div>
-
-<div class="info">
-亞洲大學 人工智慧學系<br>
-學號：114022064
-</div>
-</div>
+<div class="left">
 
 <div class="photo">
 <img src="photo.JPG.jpeg">
 </div>
 
+<h3>SKILLS</h3>
+
+<div class="skill">
+Python
+<div class="progress">
+<div class="progress-bar" data-skill="85"></div>
+</div>
+</div>
+
+<div class="skill">
+HTML / CSS
+<div class="progress">
+<div class="progress-bar" data-skill="75"></div>
+</div>
+</div>
+
+<div class="skill">
+JavaScript
+<div class="progress">
+<div class="progress-bar" data-skill="65"></div>
+</div>
+</div>
+
+<div class="skill">
+人工智慧基礎
+<div class="progress">
+<div class="progress-bar" data-skill="70"></div>
+</div>
 </div>
 
 
-<!-- 自我介紹 -->
-<div>
-<div class="section-title">PROFILE SUMMARY</div>
+<h3>LANGUAGES</h3>
+
+<ul>
+<li>中文 (母語)</li>
+<li>英文 (基礎)</li>
+<li>Python (程式語言)</li>
+</ul>
+
+</div>
+
+
+<!-- 右側 -->
+
+<div class="right">
+
+<div class="name">曾可樂</div>
+
+<div class="job">
+亞洲大學 人工智慧學系<br>
+學號：114022064
+</div>
+
+
+<div class="section">
+
+<h2>PROFILE</h2>
 
 <p>
-我是亞洲大學人工智慧學系的學生，目前對人工智慧、
-程式設計與科技應用領域有高度興趣。
+我是亞洲大學人工智慧學系的學生，
+目前對人工智慧、程式設計與科技應用領域有高度興趣，
 希望未來能在 AI 技術與商業應用領域持續學習與發展。
 </p>
-</div>
-
-
-<!-- 技能 -->
-<div class="section-title">SKILLS</div>
-
-<div class="row">
-
-<div class="col">
-
-Python
-<div class="progress"><div class="progress-bar" data-skill="85"></div></div>
-
-HTML / CSS
-<div class="progress"><div class="progress-bar" data-skill="75"></div></div>
-
-</div>
-
-<div class="col">
-
-JavaScript
-<div class="progress"><div class="progress-bar" data-skill="65"></div></div>
-
-人工智慧基礎
-<div class="progress"><div class="progress-bar" data-skill="70"></div></div>
-
-</div>
 
 </div>
 
 
-<!-- 專案 -->
-<div class="section-title">PROJECT EXPERIENCE</div>
+<div class="section">
 
-<div class="row">
+<h2>EXPERIENCE</h2>
 
-<div class="col">
 <p><b>AI 課程短影音介紹專案</b></p>
-</div>
-
-<div class="col">
 <ul>
 <li>AI 主題應用展示</li>
 <li>簡報與影片製作</li>
 </ul>
-</div>
 
-</div>
+<br>
 
-<div class="row">
-
-<div class="col">
 <p><b>Python 程式設計練習</b></p>
-</div>
-
-<div class="col">
 <ul>
 <li>基礎程式撰寫</li>
 <li>資料處理練習</li>
 </ul>
-</div>
 
-</div>
+<br>
 
-<div class="row">
-
-<div class="col">
 <p><b>設計思考與創新專題</b></p>
-</div>
-
-<div class="col">
 <ul>
 <li>創意思考應用</li>
 <li>專題實作</li>
 </ul>
-</div>
 
 </div>
 
 
-<!-- 聯絡 -->
-<div class="section-title">CONTACT</div>
+<div class="section">
 
-<p>
+<h2>EDUCATION</h2>
+
+亞洲大學<br>
+人工智慧學系
+
+</div>
+
+
+<div class="section">
+
+<h2>CONTACT</h2>
+
+<div class="contact">
+
 Email：cococh0904@gmail.com<br>
 學校：亞洲大學
-</p>
 
-<button onclick="contact()">聯絡我</button>
+</div>
+
+</div>
+
+
+</div>
 
 </div>
 
@@ -281,7 +306,8 @@ bar.style.width=bar.getAttribute("data-skill")+"%";
 
 });
 
-/* 背景音樂播放 */
+
+/* 音樂播放 */
 
 document.addEventListener("DOMContentLoaded", function() {
 
@@ -296,10 +322,6 @@ audio.play();
 });
 
 });
-
-function contact(){
-alert("歡迎透過 Email 與我聯絡！");
-}
 
 </script>
 
