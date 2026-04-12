@@ -20,6 +20,28 @@ body{
 background:#e6e6e6;
 }
 
+/* 音樂按鈕 */
+
+#musicBtn{
+position:fixed;
+top:20px;
+right:20px;
+background:#7a5b43;
+color:white;
+border:none;
+padding:10px 15px;
+border-radius:20px;
+cursor:pointer;
+font-size:14px;
+box-shadow:0 3px 8px rgba(0,0,0,0.2);
+transition:0.3s;
+z-index:999;
+}
+
+#musicBtn:hover{
+background:#5f4633;
+}
+
 /* 滿版容器 */
 
 .container{
@@ -150,9 +172,13 @@ font-size:32px;
 
 <body>
 
+<!-- 音樂控制按鈕 -->
+
+<button id="musicBtn">🔊 音樂播放</button>
+
 <!-- 背景音樂 -->
 
-<audio id="bgm" autoplay loop>
+<audio id="bgm" loop>
 <source src="53272674_MotionElements_gentle-open-pages.wav">
 </audio>
 
@@ -312,7 +338,7 @@ JavaScript
 <div class="contact">
 
 姓名：曾可樂<br>
-Email：[cococh0904@gmail.com](mailto:cococh0904@gmail.com)<br>
+Email：<a href="mailto:cococh0904@gmail.com">[cococh0904@gmail.com](mailto:cococh0904@gmail.com)</a><br>
 學校：亞洲大學<br>
 科系：人工智慧學系<br>
 學號：114022064
@@ -340,19 +366,22 @@ bar.style.width=bar.getAttribute("data-skill")+"%";
 });
 
 
-/* 音樂播放 */
+/* 音樂按鈕控制 */
 
-document.addEventListener("DOMContentLoaded", function() {
-
+let musicBtn = document.getElementById("musicBtn");
 let audio = document.getElementById("bgm");
 
 audio.volume = 0.3;
 
-audio.play().catch(() => {
-document.addEventListener("click", () => {
+musicBtn.addEventListener("click", function(){
+
+if(audio.paused){
 audio.play();
-});
-});
+musicBtn.innerHTML="🔊 音樂播放中";
+}else{
+audio.pause();
+musicBtn.innerHTML="🔇 音樂暫停";
+}
 
 });
 
