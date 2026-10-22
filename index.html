@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#4169a1">
+<title>AI 校園導師小幫手</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#f3f6fc;color:#26364d;
+font-family:"Microsoft JhengHei",Arial,sans-serif}
+.page{width:min(850px,94%);margin:28px auto}
+.card{background:white;border:1px solid #e0e7f1;
+border-radius:22px;overflow:hidden;box-shadow:0 12px 36px #2d4d7710}
+header{background:linear-gradient(125deg,#4169a1,#5c82b8);
+color:white;padding:28px}
+header h1{margin:8px 0;font-size:30px}
+header p{line-height:1.8;color:#edf4ff;font-size:14px}
+.content{padding:22px}
+.status{font-size:12px;color:#526b8a;margin-bottom:14px}
+.quick{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 18px}
+button{cursor:pointer;font:inherit}
+.quick button{border:1px solid #e0e7f1;background:#f8faff;
+color:#3a567d;padding:10px 12px;border-radius:12px}
+.quick button:hover{background:#eaf1fb}
+#chat{height:390px;overflow:auto;background:#fbfcff;
+border:1px solid #e0e7f1;border-radius:16px;padding:15px}
+.msg{max-width:90%;padding:12px 15px;margin:10px 0;
+border-radius:15px;white-space:pre-wrap;overflow-wrap:anywhere;
+font-size:14px;line-height:1.8}
+.bot{background:#edf2fa;margin-right:auto}
+.user{background:#dce9fc;margin-left:auto}
+.mode{display:block;margin-top:8px;padding-top:6px;
+border-top:1px solid #d9e3f1;color:#60748f;font-size:11px}
+form{display:flex;gap:9px;margin-top:14px}
+input{flex:1;min-width:0;padding:13px;border:1px solid #d3deed;
+border-radius:12px;font-size:15px}
+#send{background:#4169a1;color:white;border:0;
+border-radius:12px;padding:0 18px}
+#send:disabled{opacity:.6}
+#clear{background:#f0f3f8;color:#52647d;border:0;
+border-radius:12px;padding:0 12px}
+.note{font-size:12px;color:#718096;line-height:1.8;margin-top:14px}
+@media(max-width:520px){
+.page{margin:12px auto}header{padding:22px}
+header h1{font-size:24px}.content{padding:14px}
+#chat{height:48vh;min-height:300px}
+#clear{padding:0 8px}#send{padding:0 13px}
+}
+</style>
+</head>
+<body>
+<main class="page">
+<section class="card">
+<header>
+<div>YOUR CAMPUS COMPANION</div>
+<h1>🎓 AI 校園導師小幫手</h1>
+<p>課業輔導 × 作業管理 × 校園資訊 × 學習陪伴<br>
+從你現在遇到的問題開始，我們一起解決。</p>
+</header>
+<div class="content">
+<div class="status" id="status">正在檢查後端設定……</div>
+<strong>你今天想從哪裡開始？</strong>
+<div class="quick">
+<button data-q="我不懂 Python 的 if 判斷式">📚 課業問題</button>
+<button data-q="我有很多作業，不知道怎麼安排">📝 作業管理</button>
+<button data-q="我要如何查詢學校的請假規定？">🏫 校園資訊</button>
+<button data-q="最近課業很多，我有點累">💗 學習陪伴</button>
+</div>
+<div id="chat" aria-live="polite">
+<div class="msg bot">嗨！我是你的 AI 校園導師小幫手。
+你可以問課業、程式、作業安排，也可以聊聊學習困難。</div>
+</div>
+<form id="form">
+<input id="question" maxlength="2000" required
+placeholder="輸入你想詢問的問題……">
+<button id="send" type="submit">送出</button>
+<button id="clear" type="button">清除</button>
+</form>
+<div class="note">AI 回答可能有誤。校園規定請以學校正式公告為準。
+請勿輸入密碼、API 金鑰或其他敏感資料。</div>
+</div>
+</section>
+</main>
+<script>
+// 部署 Render 後，將網址替換成你的實際後端網址。
+const API_BASE = "https://YOUR-RENDER-SERVICE.onrender.com";
+const chat = document.getElementById("chat");
+const form = document.getElementById("form");
+const input = document.getElementById("question");
+const send = document.getElementById("send");
+const statusText = document.getElementById("status");
+
+function addMessage(text, who, mode="") {
+  const el = document.createElement("div");
+  el.className = "msg " + who;
+  el.textContent = text;
+  if (mode) {
+    const label = document.createElement("span");
+    label.className = "mode";
+    label.textContent = "回答方式：" + mode;
+    el.appendChild(label);
+  }
+  chat.appendChild(el);
+  chat.scrollTop = chat.scrollHeight;
+  return el;
+}
+
+async function checkHealth() {
+  if (API_BASE.includes("YOUR-RENDER-SERVICE")) {
+    statusText.textContent = "尚未設定 Render 後端網址";
+    return;
+  }
+  try {
+    const r = await fetch(API_BASE + "/health");
+    if (!r.ok) throw new Error("連線失敗");
+    statusText.textContent = "後端已連線";
+  } catch (e) {
+    statusText.textContent = "後端連線中或休眠中";
+  }
+}
+
+async function ask(message) {
+  message = message.trim();
+  if (!message || send.disabled) return;
+  addMessage(message, "user");
+  input.value = "";
+  send.disabled = true;
+  const loading = addMessage("正在思考中，請稍候……", "bot");
+
+  try {
+    if (API_BASE.includes("YOUR-RENDER-SERVICE")) {
+      throw new Error("尚未設定 Render 後端網址");
+    }
+    const r = await fetch(API_BASE + "/chat", {
+      method: "POST",
+      headers: {"Content-Type":"application/json"},
+      body: JSON.stringify({message})
+    });
+    const data = await r.json();
+    if (!r.ok) throw new Error(data.answer || "伺服器回應異常");
+    loading.textContent = data.answer || "目前沒有收到回答";
+    if (data.mode) {
+      const label = document.createElement("span");
+      label.className = "mode";
+      label.textContent = "回答方式：" + data.mode;
+      loading.appendChild(label);
+    }
+  } catch (e) {
+    loading.textContent = "目前無法取得回答。\n請確認後端網址及 Render 服務。\n原因：" + e.message;
+  } finally {
+    send.disabled = false;
+    input.focus();
+    chat.scrollTop = chat.scrollHeight;
+    checkHealth();
+  }
+}
+
+form.addEventListener("submit", e => {
+  e.preventDefault();
+  ask(input.value);
+});
+document.querySelectorAll("[data-q]").forEach(b => {
+  b.addEventListener("click", () => ask(b.dataset.q));
+});
+document.getElementById("clear").addEventListener("click", () => {
+  chat.replaceChildren();
+  addMessage("對話已清除，你可以重新輸入問題！", "bot");
+});
+checkHealth();
+</script>
+</body>
+</html>
